@@ -1,1 +1,2 @@
-# mr-score-follower
+# Mixed Reality Score Follower
+
