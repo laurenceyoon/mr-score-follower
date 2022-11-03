@@ -7,7 +7,7 @@ import scipy
 from tqdm import tqdm
 
 from ..config import HOP_LENGTH, Direction, N_FFT, FRAME_RATE
-from ..redis import redis_client
+from ..redis_client import redis_client
 from .stream_processor import StreamProcessor
 
 MAX_LEN = int(1e4)
