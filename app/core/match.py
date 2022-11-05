@@ -275,7 +275,6 @@ class Match:
         self.ref_pointer += self.w
         self.get_new_input()
         self.init_matrix()
-        # pbar.update(self.candi_history[-1][0])
         last_ref_checkpoint = 0
 
         run_condition = (
@@ -307,6 +306,8 @@ class Match:
 
             self.previous_direction = direction
             self.iteration += 1
+
+            redis_client.set("location", self.ref_pointer)
 
             if duration is None:
                 duration = int(librosa.get_duration(filename=self.ref_audio_file)) + 1

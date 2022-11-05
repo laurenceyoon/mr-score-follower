@@ -5,17 +5,11 @@ from fastapi import FastAPI
 from fastapi.responses import RedirectResponse
 
 from .redis_client import redis_client
+from .core.helper import start_performance_following
+from fastapi import BackgroundTasks
 
 app = FastAPI(title="MR Score Follower")
 CURRENT_LOCATION = 1
-
-
-async def update_location():
-    while True:
-        redis_client.set("loc", 2)
-        await asyncio.sleep(5)
-        redis_client.set("loc", 1)
-        await asyncio.sleep(5)
 
 
 @app.get("/", tags=["Basic API"])
@@ -45,10 +39,17 @@ def redis_test(value: float = 1):
 
 @app.get("/current", tags=["Basic API"])
 def current_location():
-    value = redis_client.get("loc") or CURRENT_LOCATION
-    return {"loc": value}
+    value = redis_client.get("location") or CURRENT_LOCATION
+    return {"location": value}
 
 
-if __name__ == "__main__":
-    asyncio.run(update_location())
-    # update_location()
+@app.patch(
+    "/follow",
+    status_code=HTTPStatus.ACCEPTED,
+    tags=["Basic API"],
+)
+def follow_piece(background_tasks: BackgroundTasks):
+    piece = "./resources/bwv66.6_piano.wav"
+    
+    background_tasks.add_task(start_performance_following, piece_path=piece)
+    return {"response": f"following"}
