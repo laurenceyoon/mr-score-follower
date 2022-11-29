@@ -13,6 +13,7 @@ redis = "^4.3.4"
 black = "^22.10.0"
 PyAudio = "^0.2.12"
 librosa = "^0.9.2"
+music21 = "^8.1.0"
 
 [tool.poetry.dev-dependencies]
 
