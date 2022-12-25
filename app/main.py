@@ -41,8 +41,8 @@ def redis_test(value: float = 1):
 @app.get("/current", tags=["Basic API"])
 def current_location():
     value = redis_client.get("location") or CURRENT_LOCATION
-    if int(value) == 228:
-        value = 0
+    # if int(value) == 264:
+    #     value = 0
     return float(value)
 
 
@@ -52,7 +52,7 @@ def current_location():
     tags=["Basic API"],
 )
 def follow_piece(background_tasks: BackgroundTasks):
-    piece = "./resources/bwv66.6_piano.wav"
+    piece = "./resources/bwv66.6_full.wav"
     
     background_tasks.add_task(start_performance_following, piece_path=piece)
     return {"response": f"following"}
@@ -64,7 +64,7 @@ def follow_piece(background_tasks: BackgroundTasks):
 async def websocket_endpoint(websocket: WebSocket):
     await websocket.accept()
     print("websocket accept")
-    piece = "./resources/bwv66.6_piano.wav"
+    piece = "./resources/bwv66.6_full.wav"
     # asyncio.ensure_future(start_performance_following)
     while True:
         value = int(redis_client.get("location") or CURRENT_LOCATION)

@@ -26,5 +26,6 @@ On Dummy-Unity-side
 ## Related Sources
 - Hololens Client: [Source Code](https://github.com/laurenceyoon/mr-score-follower-hololens) developed with MRTK(Mixed Reality Toolkit)
 - Demo Video: 
+  - [Score following demo in mixed reality](https://youtube.com/playlist?list=PLVMiFGKhAemGDNOlLwyEhtK2AvJTggTWx)
   - [Score(parts) placement in Hololens2](https://youtu.be/CQXPRSl0iqk)
-  - [Score following demo in mixed reality](https://youtu.be/mLPYjnWQ8TI)
+  - [Score Highlighting in Unity](https://youtu.be/ZGVP5SvyoJU)
